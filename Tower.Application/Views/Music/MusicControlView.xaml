@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:Tower.Application.Converters"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             DataContext="{Binding Music, Source={StaticResource Locator}}"
              d:DesignHeight="200" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -17,13 +18,13 @@
     </UserControl.Resources>
     <Viewbox Stretch="Uniform">
         <StackPanel Orientation="Horizontal">
-            <Button Template="{StaticResource MusicControlButtonTemplate}">
+            <Button Template="{StaticResource MusicControlButtonTemplate}" Command="{Binding PreviousCommand}">
                 <iconPacks:PackIconMaterial Kind="SkipPrevious" Foreground="#FFFFFFFF" Width="Auto" Height="Auto" />
             </Button>
-            <Button Template="{StaticResource MusicControlButtonTemplate}">
-                <iconPacks:PackIconMaterial Kind="Pause" Foreground="#FFFFFFFF" Width="Auto" Height="Auto" />
+            <Button Template="{StaticResource MusicControlButtonTemplate}" Command="{Binding TogglePlaybackCommand}">
+                <iconPacks:PackIconMaterial Kind="{Binding SpotifyService.IsPlaying, Converter={StaticResource BooleanToPlayPauseIconConverter}}" Foreground="#FFFFFFFF" Width="Auto" Height="Auto" />
             </Button>
-            <Button Template="{StaticResource MusicControlButtonTemplate}">
+            <Button Template="{StaticResource MusicControlButtonTemplate}" Command="{Binding NextCommand}">
                 <iconPacks:PackIconMaterial Kind="SkipNext" Foreground="#FFFFFFFF" Width="Auto" Height="Auto" />
             </Button>
         </StackPanel>

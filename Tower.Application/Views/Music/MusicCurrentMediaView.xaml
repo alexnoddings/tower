@@ -4,20 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:music="clr-namespace:Tower.Application.Views.Music"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             DataContext="{Binding Music, Source={StaticResource Locator}}"
              d:DesignHeight="800" d:DesignWidth="670">
     <Viewbox Stretch="Uniform">
         <StackPanel Orientation="Vertical" Width="350">
             <Grid>
-                <Image Source="https://i.scdn.co/image/4bd59c0b2ef97a9225600b4d5d5e7b45395ed9ad">
+                <Image Source="{Binding SpotifyService.AlbumArtUrl}">
                     <Image.Effect>
                         <DropShadowEffect BlurRadius="55" Opacity="0.33" ShadowDepth="0"/>
                     </Image.Effect>
                 </Image>
-                <music:MusicCurrentMediaProgressBarView MaxWidth="400" Percent="66" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                <music:MusicCurrentMediaProgressBarView MaxWidth="400" Percent="{Binding SpotifyService.PercentPlayed}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
             </Grid>
-            <TextBlock Foreground="#FFFFFFFF" HorizontalAlignment="Center" FontSize="30" TextTrimming="CharacterEllipsis" Text="Holland, 1945" TextWrapping="Wrap" TextAlignment="Center"/>
-            <TextBlock Foreground="#FFA4A4A4" HorizontalAlignment="Center" FontSize="20" TextTrimming="CharacterEllipsis" Text="Neutral Milk Hotel" TextWrapping="Wrap" TextAlignment="Center" />
+            <TextBlock Foreground="#FFFFFFFF" HorizontalAlignment="Center" FontSize="30" TextTrimming="CharacterEllipsis" Text="{Binding SpotifyService.TrackTitle}" TextWrapping="Wrap" TextAlignment="Center"/>
+            <TextBlock Foreground="#FFA4A4A4" HorizontalAlignment="Center" FontSize="20" TextTrimming="CharacterEllipsis" Text="{Binding SpotifyService.TrackArtist}" TextWrapping="Wrap" TextAlignment="Center" />
         </StackPanel>
     </Viewbox>
 </UserControl>
