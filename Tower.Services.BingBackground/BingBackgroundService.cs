@@ -46,12 +46,12 @@ namespace Tower.Services.BingBackground
             SelectedBackgroundUri = "";
             AvailableBackgroundUris = new List<string>();
 
+            // Begin checking in the background
+            Task.Factory.StartNew(async () => await CheckForNewBackgroundsAsync());
+
             var timer = new DispatcherTimer(DispatcherPriority.Background) {Interval = NewBackgroundCheckInterval};
             timer.Tick += async (_, __) => await CheckForNewBackgroundsAsync();
             timer.Start();
-
-            // Begin checking in the background
-            Task.Factory.StartNew(async () => await CheckForNewBackgroundsAsync());
         }
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

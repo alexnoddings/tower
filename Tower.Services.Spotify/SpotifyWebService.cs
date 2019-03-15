@@ -148,11 +148,11 @@ namespace Tower.Services.Spotify
             
             _localService = new SpotifyLocalService();
 
+            // Begin checking in the background
+            Task.Factory.StartNew(async () => await CheckForUpdatesAsync());
             var updateTimerThread = new DispatcherTimer(DispatcherPriority.Normal) { Interval = UpdateInterval };
             updateTimerThread.Tick += async (_, __) => await CheckForUpdatesAsync();
             updateTimerThread.Start();
-            // Begin checking in the background
-            Task.Factory.StartNew(async () => await CheckForUpdatesAsync());
 
             // Tokens expire automatically after 60 mins. Try to auto refresh before then.
             var refreshTimerThread = new DispatcherTimer(DispatcherPriority.Normal)
