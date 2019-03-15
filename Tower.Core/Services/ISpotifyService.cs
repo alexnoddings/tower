@@ -18,7 +18,7 @@ namespace Tower.Core.Services
 
         Task PreviousTrackAsync();
         Task NextTrackAsync();
-        Task ResumePlaybackAsync(bool forceThisDevice = false);
+        Task ResumePlaybackAsync(bool forceThisDevice = false, int positionMs = 0);
         Task PausePlaybackAsync();
     }
 }
