@@ -39,16 +39,20 @@ namespace Tower.Application.ViewModel
             }
 
             SimpleIoc.Default.Register<MusicViewModel>();
+            SimpleIoc.Default.Register<TimeViewModel>();
+
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
         public MusicViewModel Music => ServiceLocator.Current.GetInstance<MusicViewModel>();
+        public TimeViewModel Time => ServiceLocator.Current.GetInstance<TimeViewModel>();
 
         public static void Cleanup()
         {
             ServiceLocator.Current.GetInstance<MainViewModel>().Cleanup();
             ServiceLocator.Current.GetInstance<MusicViewModel>().Cleanup();
+            ServiceLocator.Current.GetInstance<TimeViewModel>().Cleanup();
         }
     }
 }
