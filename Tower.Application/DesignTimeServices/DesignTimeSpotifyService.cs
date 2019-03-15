@@ -91,13 +91,13 @@ namespace Tower.Application.DesignTimeServices
         {
             IsPlaying = true;
             // Shorter Title & Artist
-            // TrackTitle = "Holland, 1945";
-            // TrackArtist = "Neutral Milk Hotel";
+            TrackTitle = "Holland, 1945";
+            TrackArtist = "Neutral Milk Hotel";
             // Longer Title & Artist
-            TrackTitle = "Sgt. Pepper's Lonely Hearts Club Band - Remastered 2015";
-            TrackArtist = "King Gizzard & The Lizard Wizard";
+            // TrackTitle = "Sgt. Pepper's Lonely Hearts Club Band - Remastered 2015";
+            // TrackArtist = "King Gizzard & The Lizard Wizard";
             AlbumArtUrl = "https://i.scdn.co/image/4bd59c0b2ef97a9225600b4d5d5e7b45395ed9ad";
-            PercentPlayed = 0.66;
+            PercentPlayed = 66;
         }
     }
 }
