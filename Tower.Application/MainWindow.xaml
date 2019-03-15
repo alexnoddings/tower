@@ -3,10 +3,55 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:converters="clr-namespace:Tower.Application.Converters"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         mc:Ignorable="d"
         Title="Tower" Width="1366" Height="768">
-    <Grid>
-
+    <Window.Resources>
+        <ResourceDictionary>
+            <converters:BooleanToDayNightIconConverter x:Key="BooleanToDayNightIconConverter" />
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <Style x:Key="SettingsButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <ControlTemplate x:Key="SettingButtonTemplate" TargetType="Button">
+                <Button Width="100" Height="100" Command="{TemplateBinding Command}" Background="#FFFFFFFF" BorderBrush="{x:Null}" Content="{TemplateBinding Content}" Style="{StaticResource SettingsButtonStyle}" />
+            </ControlTemplate>
+            <Style x:Key="SettingsButtonIconStyle" TargetType="iconPacks:PackIconMaterial">
+                <Setter Property="Padding" Value="25" />
+                <Setter Property="Foreground" Value="#FFFFFFFF" />
+                <Setter Property="Background" Value="#00000000" />
+                <Setter Property="Width" Value="Auto" />
+                <Setter Property="Height" Value="Auto" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="Black">
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Vertical" Width="100">
+            <Button Template="{StaticResource SettingButtonTemplate}" Command="{Binding ToggleSettingsCommand}">
+                <iconPacks:PackIconMaterial Style="{StaticResource SettingsButtonIconStyle}" Kind="Settings" />
+            </Button>
+            <StackPanel Visibility="{Binding IsSettingsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Vertical">
+                <Button Template="{StaticResource SettingButtonTemplate}" Command="{Binding ToggleDayModeCommand}">
+                    <iconPacks:PackIconMaterial Style="{StaticResource SettingsButtonIconStyle}" Kind="{Binding IsDayMode, Converter={StaticResource BooleanToDayNightIconConverter}}" />
+                </Button>
+                <Button Template="{StaticResource SettingButtonTemplate}" Command="{Binding OpenAlarmsCommand}">
+                    <iconPacks:PackIconMaterial Style="{StaticResource SettingsButtonIconStyle}" Kind="Alarm" />
+                </Button>
+                <Button Template="{StaticResource SettingButtonTemplate}" Command="{Binding OpenBackgroundsCommand}">
+                    <iconPacks:PackIconMaterial Style="{StaticResource SettingsButtonIconStyle}" Kind="Image" />
+                </Button>
+                <Button Template="{StaticResource SettingButtonTemplate}" Command="{Binding CloseApplicationCommand}">
+                    <iconPacks:PackIconMaterial Style="{StaticResource SettingsButtonIconStyle}" Kind="Close" />
+                </Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
