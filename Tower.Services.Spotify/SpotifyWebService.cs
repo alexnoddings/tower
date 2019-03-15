@@ -138,8 +138,10 @@ namespace Tower.Services.Spotify
         public SpotifyWebService()
         {
             string clientId = Environment.GetEnvironmentVariable("SPOTIFY_CLIENT_ID");
+            if (clientId == null) throw new ApplicationException("Environment variable SPOTIFY_CLIENT_ID not set");
             string secretId = Environment.GetEnvironmentVariable("SPOTIFY_SECRET_ID");
-            
+            if (secretId == null) throw new ApplicationException("Environment variable SPOTIFY_SECRET_ID not set");
+
             _authCodeAuth = new AuthorizationCodeAuth(clientId, secretId, RedirectUri, RedirectUri,
                 Scope.UserModifyPlaybackState | Scope.UserReadPlaybackState | Scope.UserReadCurrentlyPlaying);
             _authCodeAuth.AuthReceived += AuthCodeAuth_AuthReceived;
