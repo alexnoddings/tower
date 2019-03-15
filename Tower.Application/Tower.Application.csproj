@@ -79,6 +79,11 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Converters\BooleanToPlayPauseIconConverter.cs" />
+    <Compile Include="DesignTimeServices\DesignTimeBackgroundService.cs" />
+    <Compile Include="DesignTimeServices\DesignTimeBrightnessService.cs" />
+    <Compile Include="DesignTimeServices\DesignTimeSpotifyService.cs" />
+    <Compile Include="DesignTimeServices\DesignTimeTimeService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
@@ -104,6 +109,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tower.Core\Tower.Core.csproj">
+      <Project>{25A0C28F-4ABF-4566-8EE8-578DFA2F4E13}</Project>
+      <Name>Tower.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tower.Services.BingBackground\Tower.Services.BingBackground.csproj">
+      <Project>{4D9AF742-65BB-4A55-BA38-BA220EECC823}</Project>
+      <Name>Tower.Services.BingBackground</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tower.Services.Spotify\Tower.Services.Spotify.csproj">
+      <Project>{21E2C2D8-B5D6-4C60-A0F3-876F475DE5DC}</Project>
+      <Name>Tower.Services.Spotify</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tower.Services.Time\Tower.Services.Time.csproj">
+      <Project>{964B1AEE-1BDA-472B-B3B6-F5AC4726B18A}</Project>
+      <Name>Tower.Services.Time</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tower.Services.WmiBrightness\Tower.Services.WmiBrightness.csproj">
+      <Project>{46C4D9D5-07DE-49FC-8286-3F8EE7F37779}</Project>
+      <Name>Tower.Services.WmiBrightness</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
