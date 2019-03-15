@@ -79,6 +79,7 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Converters\BooleanToDayNightIconConverter.cs" />
     <Compile Include="Converters\BooleanToPlayPauseIconConverter.cs" />
     <Compile Include="DesignTimeServices\DesignTimeBackgroundService.cs" />
     <Compile Include="DesignTimeServices\DesignTimeBrightnessService.cs" />
