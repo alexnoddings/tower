@@ -13,7 +13,7 @@ using Tower.Core.Services;
 
 namespace Tower.Services.Spotify
 {
-    public class SpotifyWebService : ISpotifyService, INotifyPropertyChanged
+    public class SpotifyWebService : BindableService, ISpotifyService
     {
         private const int AccessTokenExpiredErrorStatus = 0x191;
         private const int MaxBackOff = 2048;
@@ -37,10 +37,8 @@ namespace Tower.Services.Spotify
             get => _isPlaying;
             private set
             {
-                if (value == _isPlaying) return;
-                _isPlaying = value;
-                PlaybackStateModified?.Invoke(this, EventArgs.Empty);
-                NotifyPropertyChanged();
+                if (HandlePropertyChange(ref _isPlaying, value))
+                    PlaybackStateModified?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -50,10 +48,8 @@ namespace Tower.Services.Spotify
             get => _trackTitle;
             private set
             {
-                if (value == _trackTitle) return;
-                _trackTitle = value;
-                PlaybackStateModified?.Invoke(this, EventArgs.Empty);
-                NotifyPropertyChanged();
+                if (HandlePropertyChange(ref _trackTitle, value))
+                    PlaybackStateModified?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -63,10 +59,8 @@ namespace Tower.Services.Spotify
             get => _trackArtist;
             private set
             {
-                if (value == _trackArtist) return;
-                _trackArtist = value;
-                PlaybackStateModified?.Invoke(this, EventArgs.Empty);
-                NotifyPropertyChanged();
+                if (HandlePropertyChange(ref _trackArtist, value))
+                    PlaybackStateModified?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -76,9 +70,8 @@ namespace Tower.Services.Spotify
             get => _albumArtUrl;
             private set
             {
-                if (value == _albumArtUrl) return;
-                _albumArtUrl = value;
-                NotifyPropertyChanged();
+                if (HandlePropertyChange(ref _albumArtUrl, value))
+                    PlaybackStateModified?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -88,9 +81,8 @@ namespace Tower.Services.Spotify
             get => _percentPlayed;
             private set
             {
-                if (Math.Abs(_percentPlayed - value) < 0.01) return;
-                _percentPlayed = value;
-                NotifyPropertyChanged();
+                if (HandlePropertyChange(ref _percentPlayed, value))
+                    PlaybackStateModified?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -127,12 +119,6 @@ namespace Tower.Services.Spotify
                 await TransferPlaybackToThisDeviceAsync();
             await _api.ResumePlaybackAsync("", "", null, "", positionMs);
         }
-        #endregion
-
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         #endregion
 
         public SpotifyWebService()
