@@ -9,36 +9,24 @@ using Tower.Core.Services;
 
 namespace Tower.Services.BingBackground
 {
-    public class BingBackgroundService : IBackgroundService, INotifyPropertyChanged
+    public class BingBackgroundService : BindableService, IBackgroundService
     {
         private static readonly TimeSpan NewBackgroundCheckInterval = TimeSpan.FromSeconds(15);
 
         private DateTime _lastBackgroundCheckDate = DateTime.MinValue;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private string _selectedBackgroundUri;
         public string SelectedBackgroundUri
         {
             get => _selectedBackgroundUri;
-            private set
-            {
-                if (value == _selectedBackgroundUri) return;
-                _selectedBackgroundUri = value;
-                NotifyPropertyChanged();
-            }
+            private set => HandlePropertyChange(ref _selectedBackgroundUri, value);
         }
 
         private List<string> _availableBackgroundUris;
         public List<string> AvailableBackgroundUris
         {
             get => _availableBackgroundUris;
-            private set
-            {
-                if (value == _availableBackgroundUris) return;
-                _availableBackgroundUris = value;
-                NotifyPropertyChanged();
-            }
+            private set => HandlePropertyChange(ref _availableBackgroundUris, value);
         }
 
         public BingBackgroundService()
@@ -53,8 +41,6 @@ namespace Tower.Services.BingBackground
             timer.Tick += async (_, __) => await CheckForNewBackgroundsAsync();
             timer.Start();
         }
-
-        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         private async Task CheckForNewBackgroundsAsync()
         {
