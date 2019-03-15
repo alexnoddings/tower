@@ -85,6 +85,7 @@
     <Compile Include="DesignTimeServices\DesignTimeSpotifyService.cs" />
     <Compile Include="DesignTimeServices\DesignTimeTimeService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MusicViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\Music\MusicControlView.xaml.cs">
       <DependentUpon>MusicControlView.xaml</DependentUpon>

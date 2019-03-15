@@ -38,17 +38,17 @@ namespace Tower.Application.ViewModel
                 SimpleIoc.Default.Register<ITimeService, TimeService>();
             }
 
+            SimpleIoc.Default.Register<MusicViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
-        public MainViewModel Main
-        {
-            get => ServiceLocator.Current.GetInstance<MainViewModel>();
-        }
-        
+        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public MusicViewModel Music => ServiceLocator.Current.GetInstance<MusicViewModel>();
+
         public static void Cleanup()
         {
             ServiceLocator.Current.GetInstance<MainViewModel>().Cleanup();
+            ServiceLocator.Current.GetInstance<MusicViewModel>().Cleanup();
         }
     }
 }
