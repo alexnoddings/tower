@@ -43,6 +43,8 @@ namespace Tower.Services.Time
 
         public TimeService()
         {
+            SetNextAlarm(TimeSpan.FromHours(10) + TimeSpan.FromMinutes(16));
+
             Update();
             var updateTimer = new DispatcherTimer(DispatcherPriority.Normal) { Interval = UpdateInterval };
             updateTimer.Tick += (_, __) => Update();
@@ -57,7 +59,9 @@ namespace Tower.Services.Time
             if (NextAlarm > DateTime.Now) return;
 
             AlarmTriggered?.Invoke(this, EventArgs.Empty);
-            NextAlarm = NextAlarm + TimeSpan.FromDays(1);
+            
+            // This is done on the off chance the alarm is more than a day late, where it would keep adding 1 day on and invoking AlarmTriggered
+            NextAlarm = DateTime.Today + TimeSpan.FromDays(1) + NextAlarm.TimeOfDay;
         }
     }
 }
