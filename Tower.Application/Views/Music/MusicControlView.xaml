@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Tower.Application.Views.Music.MusicControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:Tower.Application.Converters"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:BooleanToPlayPauseIconConverter x:Key="BooleanToPlayPauseIconConverter" />
+            <ControlTemplate x:Key="MusicControlButtonTemplate" TargetType="Button">
+                <Button Width="100" Height="100" Command="{TemplateBinding Command}" Background="{x:Null}" BorderBrush="{x:Null}" Padding="25" Content="{TemplateBinding Content}" />
+            </ControlTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Viewbox Stretch="Uniform">
+        <StackPanel Orientation="Horizontal">
+            <Button Template="{StaticResource MusicControlButtonTemplate}">
+                <iconPacks:PackIconMaterial Kind="SkipPrevious" Foreground="#FFFFFFFF" Width="Auto" Height="Auto" />
+            </Button>
+            <Button Template="{StaticResource MusicControlButtonTemplate}">
+                <iconPacks:PackIconMaterial Kind="Pause" Foreground="#FFFFFFFF" Width="Auto" Height="Auto" />
+            </Button>
+            <Button Template="{StaticResource MusicControlButtonTemplate}">
+                <iconPacks:PackIconMaterial Kind="SkipNext" Foreground="#FFFFFFFF" Width="Auto" Height="Auto" />
+            </Button>
+        </StackPanel>
+    </Viewbox>
+</UserControl>
