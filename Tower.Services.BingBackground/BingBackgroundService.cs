@@ -54,10 +54,7 @@ namespace Tower.Services.BingBackground
             Task.Factory.StartNew(async () => await CheckForNewBackgroundsAsync());
         }
 
-        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         private async Task CheckForNewBackgroundsAsync()
         {
