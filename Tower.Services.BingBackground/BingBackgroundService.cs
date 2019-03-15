@@ -15,6 +15,7 @@ namespace Tower.Services.BingBackground
 
         private DateTime _lastBackgroundCheckDate = DateTime.MinValue;
 
+        #region IBackgroundService
         private string _selectedBackgroundUri;
         public string SelectedBackgroundUri
         {
@@ -28,6 +29,7 @@ namespace Tower.Services.BingBackground
             get => _availableBackgroundUris;
             private set => HandlePropertyChange(ref _availableBackgroundUris, value);
         }
+        #endregion
 
         public BingBackgroundService()
         {
