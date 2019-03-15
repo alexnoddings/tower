@@ -53,7 +53,7 @@ namespace Tower.Services.Time
 
         private void Update()
         {
-            TimeText = DateTime.Now.ToString("hh:mm:ss tt zz");
+            TimeText = DateTime.Now.ToString("hh:mm:ss tt");
             DateText = DateTime.Now.ToString("yyyy-MM-dd");
 
             if (NextAlarm > DateTime.Now) return;
