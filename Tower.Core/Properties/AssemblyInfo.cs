@@ -4,11 +4,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Tower.Core")]
 [assembly: AssemblyDescription("Core library for Tower application")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Tower.Core")]
-[assembly: AssemblyCopyright("Copyright © Alex Noddings 2019")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 
