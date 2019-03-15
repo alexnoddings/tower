@@ -12,7 +12,7 @@ namespace Tower.Core.Services
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected bool HandlePropertyChange<T>(ref T field, T value, [CallerMemberName] string propertyName = "") where T : IEquatable<T>
+        protected bool HandlePropertyChange<T>(ref T field, T value, [CallerMemberName] string propertyName = "")
         {
             if (value.Equals(field)) return false;
             field = value;
