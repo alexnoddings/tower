@@ -81,12 +81,14 @@
     </Compile>
     <Compile Include="Converters\BooleanToDayNightIconConverter.cs" />
     <Compile Include="Converters\BooleanToPlayPauseIconConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="DesignTimeServices\DesignTimeBackgroundService.cs" />
     <Compile Include="DesignTimeServices\DesignTimeBrightnessService.cs" />
     <Compile Include="DesignTimeServices\DesignTimeSpotifyService.cs" />
     <Compile Include="DesignTimeServices\DesignTimeTimeService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MusicViewModel.cs" />
+    <Compile Include="ViewModel\TimeViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\Music\MusicControlView.xaml.cs">
       <DependentUpon>MusicControlView.xaml</DependentUpon>
@@ -96,6 +98,9 @@
     </Compile>
     <Compile Include="Views\Music\MusicCurrentMediaView.xaml.cs">
       <DependentUpon>MusicCurrentMediaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Time\DateTimeView.xaml.cs">
+      <DependentUpon>DateTimeView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Music\MusicCurrentMediaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Time\DateTimeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
