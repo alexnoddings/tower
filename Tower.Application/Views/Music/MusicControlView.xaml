@@ -12,7 +12,7 @@
         <ResourceDictionary>
             <converters:BooleanToPlayPauseIconConverter x:Key="BooleanToPlayPauseIconConverter" />
             <ControlTemplate x:Key="MusicControlButtonTemplate" TargetType="Button">
-                <Button Width="100" Height="100" Command="{TemplateBinding Command}" Background="{x:Null}" BorderBrush="{x:Null}" Padding="25" Content="{TemplateBinding Content}" />
+                <Button Width="100" Height="100" Command="{TemplateBinding Command}" Background="#00000000" BorderBrush="{x:Null}" Padding="25" Content="{TemplateBinding Content}" />
             </ControlTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
