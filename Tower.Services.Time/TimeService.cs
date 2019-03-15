@@ -6,7 +6,7 @@ namespace Tower.Services.Time
 {
     public class TimeService : BindableService, ITimeService
     {
-        private static readonly TimeSpan UpdateInterval = TimeSpan.FromSeconds(2);
+        private static readonly TimeSpan UpdateInterval = TimeSpan.FromMilliseconds(1000);
 
         #region ITimeService
         private string _timeText;
