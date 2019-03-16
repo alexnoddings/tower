@@ -9,7 +9,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         mc:Ignorable="d"
-        Title="Tower" Width="1366" Height="768">
+        Title="Tower" Width="1366" Height="768" WindowState="Maximized" WindowStyle="None">
     <Window.Resources>
         <ResourceDictionary>
             <converters:BooleanToDayNightIconConverter x:Key="BooleanToDayNightIconConverter" />
