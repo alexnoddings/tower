@@ -11,21 +11,18 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:BooleanToPlayPauseIconConverter x:Key="BooleanToPlayPauseIconConverter" />
-            <ControlTemplate x:Key="MusicControlButtonTemplate" TargetType="Button">
-                <Button Width="100" Height="100" Command="{TemplateBinding Command}" Background="#00000000" BorderBrush="{x:Null}" Padding="25" Content="{TemplateBinding Content}" />
-            </ControlTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
     <Viewbox Stretch="Uniform">
         <StackPanel Orientation="Horizontal">
-            <Button Template="{StaticResource MusicControlButtonTemplate}" Command="{Binding PreviousCommand}">
-                <iconPacks:PackIconMaterial Kind="SkipPrevious" Foreground="#FFFFFFFF" Width="Auto" Height="Auto" />
+            <Button Template="{StaticResource ButtonTemplate}" Command="{Binding PreviousCommand}" Height="100">
+                <iconPacks:PackIconMaterial Style="{StaticResource ButtonIconStyle}" Kind="SkipPrevious" />
             </Button>
-            <Button Template="{StaticResource MusicControlButtonTemplate}" Command="{Binding TogglePlaybackCommand}">
-                <iconPacks:PackIconMaterial Kind="{Binding SpotifyService.IsPlaying, Converter={StaticResource BooleanToPlayPauseIconConverter}}" Foreground="#FFFFFFFF" Width="Auto" Height="Auto" />
+            <Button Template="{StaticResource ButtonTemplate}" Command="{Binding TogglePlaybackCommand}" Height="100">
+                <iconPacks:PackIconMaterial Style="{StaticResource ButtonIconStyle}" Kind="{Binding SpotifyService.IsPlaying, Converter={StaticResource BooleanToPlayPauseIconConverter}}" />
             </Button>
-            <Button Template="{StaticResource MusicControlButtonTemplate}" Command="{Binding NextCommand}">
-                <iconPacks:PackIconMaterial Kind="SkipNext" Foreground="#FFFFFFFF" Width="Auto" Height="Auto" />
+            <Button Template="{StaticResource ButtonTemplate}" Command="{Binding NextCommand}" Height="100">
+                <iconPacks:PackIconMaterial Style="{StaticResource ButtonIconStyle}" Kind="SkipNext" />
             </Button>
         </StackPanel>
     </Viewbox>
