@@ -20,7 +20,7 @@ namespace Tower.Services.BingBackground
         public string SelectedBackgroundUri
         {
             get => _selectedBackgroundUri;
-            private set => HandlePropertyChange(ref _selectedBackgroundUri, value);
+            set => HandlePropertyChange(ref _selectedBackgroundUri, value);
         }
 
         private List<string> _availableBackgroundUris;
