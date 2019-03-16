@@ -24,7 +24,7 @@ namespace Tower.Application.DesignTimeServices
 
         public DesignTimeBackgroundService()
         {
-            AvailableBackgroundUris = new List<string> { BackgroundUri };
+            AvailableBackgroundUris = new List<string> { BackgroundUri, BackgroundUri, BackgroundUri, BackgroundUri, BackgroundUri, BackgroundUri, BackgroundUri, BackgroundUri };
             SelectedBackgroundUri = BackgroundUri;
         }
     }
