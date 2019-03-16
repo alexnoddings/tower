@@ -36,15 +36,12 @@
         <Grid Visibility="{Binding IsBackgroundSelectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Border Background="#FF202224" BorderThickness="2" CornerRadius="4">
                 <Border.Effect>
-                    <DropShadowEffect Direction="270" Color="#FF202224" ShadowDepth="1"></DropShadowEffect>
+                    <DropShadowEffect Direction="270" Color="#FF202224" ShadowDepth="1" />
                 </Border.Effect>
             </Border>
             <ListView HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding BackgroundService.AvailableBackgroundUris}" SelectedItem="{Binding BackgroundService.SelectedBackgroundUri}" Padding="6" Background="{x:Null}" BorderBrush="{x:Null}">
                 <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseUp">
-                        <i:InvokeCommandAction Command="{Binding CloseBackgroundsCommand}" />
-                    </i:EventTrigger>
-                    <i:EventTrigger EventName="TouchUp">
+                    <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding CloseBackgroundsCommand}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
