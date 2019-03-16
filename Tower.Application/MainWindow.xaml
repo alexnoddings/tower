@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:converters="clr-namespace:Tower.Application.Converters"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         mc:Ignorable="d"
         Title="Tower" Width="1366" Height="768">
@@ -12,44 +14,79 @@
         <ResourceDictionary>
             <converters:BooleanToDayNightIconConverter x:Key="BooleanToDayNightIconConverter" />
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-            <Style x:Key="SettingsButtonStyle" TargetType="{x:Type Button}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" />
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <ControlTemplate x:Key="SettingButtonTemplate" TargetType="Button">
-                <Button Width="100" Height="100" Command="{TemplateBinding Command}" Background="#FFFFFFFF" BorderBrush="{x:Null}" Content="{TemplateBinding Content}" Style="{StaticResource SettingsButtonStyle}" />
-            </ControlTemplate>
-            <Style x:Key="SettingsButtonIconStyle" TargetType="iconPacks:PackIconMaterial">
-                <Setter Property="Padding" Value="25" />
-                <Setter Property="Foreground" Value="#FFFFFFFF" />
-                <Setter Property="Background" Value="#00000000" />
-                <Setter Property="Width" Value="Auto" />
-                <Setter Property="Height" Value="Auto" />
-            </Style>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Grid Background="Black">
+        <UserControl Content="{Binding ActiveUserControl}" />
+        <Grid Background="#FF101010" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsAlarmControlVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <materialDesign:Clock x:Name="AlarmClock" Grid.Row="0" Time="{Binding TimeService.NextAlarm}" DisplayAutomation="ToMinutesOnly" Background="{x:Null}"/>
+            <Button Grid.Row="1" Command="{Binding CloseAlarmCommand}" Click="AlarmOkButton_OnClick">OK</Button>
+        </Grid>
+        <Grid Visibility="{Binding IsBackgroundSelectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border Background="#FF202224" BorderThickness="2" CornerRadius="4">
+                <Border.Effect>
+                    <DropShadowEffect Direction="270" Color="#FF202224" ShadowDepth="1"></DropShadowEffect>
+                </Border.Effect>
+            </Border>
+            <ListView HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding BackgroundService.AvailableBackgroundUris}" SelectedItem="{Binding BackgroundService.SelectedBackgroundUri}" Padding="6" Background="{x:Null}" BorderBrush="{x:Null}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseUp">
+                        <i:InvokeCommandAction Command="{Binding CloseBackgroundsCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="TouchUp">
+                        <i:InvokeCommandAction Command="{Binding CloseBackgroundsCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <ContentPresenter Margin="5,5" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="4"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding}" Width="250" Height="141" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="UniformToFill" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Vertical" Width="100">
-            <Button Template="{StaticResource SettingButtonTemplate}" Command="{Binding ToggleSettingsCommand}">
-                <iconPacks:PackIconMaterial Style="{StaticResource SettingsButtonIconStyle}" Kind="Settings" />
+            <Button Template="{StaticResource ButtonTemplate}" Command="{Binding ToggleSettingsCommand}" Height="100">
+                <iconPacks:PackIconMaterial Style="{StaticResource ButtonIconStyle}" Kind="Settings" />
             </Button>
             <StackPanel Visibility="{Binding IsSettingsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Vertical">
-                <Button Template="{StaticResource SettingButtonTemplate}" Command="{Binding ToggleDayModeCommand}">
-                    <iconPacks:PackIconMaterial Style="{StaticResource SettingsButtonIconStyle}" Kind="{Binding IsDayMode, Converter={StaticResource BooleanToDayNightIconConverter}}" />
+                <Button Template="{StaticResource ButtonTemplate}" Command="{Binding ToggleDayModeCommand}" Height="100">
+                    <iconPacks:PackIconMaterial Style="{StaticResource ButtonIconStyle}" Kind="{Binding IsDayMode, Converter={StaticResource BooleanToDayNightIconConverter}}" />
                 </Button>
-                <Button Template="{StaticResource SettingButtonTemplate}" Command="{Binding OpenAlarmsCommand}">
-                    <iconPacks:PackIconMaterial Style="{StaticResource SettingsButtonIconStyle}" Kind="Alarm" />
+                <Button Template="{StaticResource ButtonTemplate}" Command="{Binding OpenAlarmCommand}" Height="100">
+                    <iconPacks:PackIconMaterial Style="{StaticResource ButtonIconStyle}" Kind="Alarm" />
                 </Button>
-                <Button Template="{StaticResource SettingButtonTemplate}" Command="{Binding OpenBackgroundsCommand}">
-                    <iconPacks:PackIconMaterial Style="{StaticResource SettingsButtonIconStyle}" Kind="Image" />
+                <Button Template="{StaticResource ButtonTemplate}" Command="{Binding OpenBackgroundsCommand}" Height="100">
+                    <iconPacks:PackIconMaterial Style="{StaticResource ButtonIconStyle}" Kind="Image" />
                 </Button>
-                <Button Template="{StaticResource SettingButtonTemplate}" Command="{Binding CloseApplicationCommand}">
-                    <iconPacks:PackIconMaterial Style="{StaticResource SettingsButtonIconStyle}" Kind="Close" />
+                <Button Template="{StaticResource ButtonTemplate}" Command="{Binding CloseApplicationCommand}" Height="100">
+                    <iconPacks:PackIconMaterial Style="{StaticResource ButtonIconStyle}" Kind="Close" />
                 </Button>
             </StackPanel>
         </StackPanel>
