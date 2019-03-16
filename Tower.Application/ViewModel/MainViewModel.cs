@@ -72,7 +72,7 @@ namespace Tower.Application.ViewModel
         {
             if (IsInDesignMode)
             {
-                IsAlarmControlVisible = true;
+                IsAlarmControlVisible = false;
                 IsBackgroundSelectionVisible = false;
                 IsSettingsVisible = true;
             }
