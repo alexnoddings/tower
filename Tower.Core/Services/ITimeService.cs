@@ -10,8 +10,7 @@ namespace Tower.Core.Services
     {
         string TimeText { get; }
         string DateText { get; }
-        DateTime NextAlarm { get; }
-        void SetNextAlarm(TimeSpan timeOfDay);
+        DateTime NextAlarm { get; set; }
         event EventHandler AlarmTriggered;
     }
 }

@@ -27,15 +27,16 @@ namespace Tower.Services.Time
         public DateTime NextAlarm
         {
             get => _nextAlarm;
-            private set => HandlePropertyChange(ref _nextAlarm, value);
-        }
-
-        public void SetNextAlarm(TimeSpan timeOfDay)
-        {
-            if (timeOfDay <= DateTime.Now.TimeOfDay)
-                NextAlarm = DateTime.Today + TimeSpan.FromDays(1) + timeOfDay;
-            else
-                NextAlarm = DateTime.Today + timeOfDay;
+            set
+            {
+                TimeSpan timeOfDay = value.TimeOfDay;
+                DateTime newValue;
+                if (timeOfDay <= DateTime.Now.TimeOfDay)
+                    newValue = DateTime.Today + TimeSpan.FromDays(1) + timeOfDay;
+                else
+                    newValue = DateTime.Today + timeOfDay;
+                HandlePropertyChange(ref _nextAlarm, newValue);
+            }
         }
 
         public event EventHandler AlarmTriggered;
@@ -43,7 +44,7 @@ namespace Tower.Services.Time
 
         public TimeService()
         {
-            SetNextAlarm(TimeSpan.FromHours(10) + TimeSpan.FromMinutes(16));
+            NextAlarm = DateTime.Today + TimeSpan.FromHours(10) + TimeSpan.FromMinutes(16);
 
             Update();
             var updateTimer = new DispatcherTimer(DispatcherPriority.Normal) { Interval = UpdateInterval };
