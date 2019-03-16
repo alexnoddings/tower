@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Tower.Application.Views.Time
 {
     /// <summary>
-    /// Interaction logic for DateTimeView.xaml
+    /// Interaction logic for TimeView.xaml
     /// </summary>
-    public partial class DateTimeView : UserControl
+    public partial class TimeView : UserControl
     {
-        public DateTimeView()
+        public TimeView()
         {
             InitializeComponent();
         }
