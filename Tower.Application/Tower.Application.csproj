@@ -53,6 +53,12 @@
     <Reference Include="MahApps.Metro.IconPacks.Material, Version=2.3.0.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.IconPacks.Material.2.3.0\lib\net46\MahApps.Metro.IconPacks.Material.dll</HintPath>
     </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.0.0.14576, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.1\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.0.1205, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.5.0.1205\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -88,8 +94,15 @@
     <Compile Include="DesignTimeServices\DesignTimeTimeService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MusicViewModel.cs" />
+    <Compile Include="ViewModel\DayViewModel.cs" />
     <Compile Include="ViewModel\TimeViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\DayView.xaml.cs">
+      <DependentUpon>DayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicView.xaml.cs">
+      <DependentUpon>MusicView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Music\MusicControlView.xaml.cs">
       <DependentUpon>MusicControlView.xaml</DependentUpon>
     </Compile>
@@ -99,8 +112,14 @@
     <Compile Include="Views\Music\MusicCurrentMediaView.xaml.cs">
       <DependentUpon>MusicCurrentMediaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Time\DateTimeView.xaml.cs">
-      <DependentUpon>DateTimeView.xaml</DependentUpon>
+    <Compile Include="Views\NightView.xaml.cs">
+      <DependentUpon>NightView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Time\DateView.xaml.cs">
+      <DependentUpon>DateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Time\TimeView.xaml.cs">
+      <DependentUpon>TimeView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -114,6 +133,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\DayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Music\MusicControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,7 +153,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Time\DateTimeView.xaml">
+    <Page Include="Views\NightView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Time\DateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Time\TimeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

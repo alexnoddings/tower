@@ -38,6 +38,7 @@ namespace Tower.Application.ViewModel
                 SimpleIoc.Default.Register<ITimeService, TimeService>();
             }
 
+            SimpleIoc.Default.Register<DayViewModel>();
             SimpleIoc.Default.Register<MusicViewModel>();
             SimpleIoc.Default.Register<TimeViewModel>();
 
@@ -45,12 +46,14 @@ namespace Tower.Application.ViewModel
         }
 
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public DayViewModel Day => ServiceLocator.Current.GetInstance<DayViewModel>();
         public MusicViewModel Music => ServiceLocator.Current.GetInstance<MusicViewModel>();
         public TimeViewModel Time => ServiceLocator.Current.GetInstance<TimeViewModel>();
 
         public static void Cleanup()
         {
             ServiceLocator.Current.GetInstance<MainViewModel>().Cleanup();
+            ServiceLocator.Current.GetInstance<DayViewModel>().Cleanup();
             ServiceLocator.Current.GetInstance<MusicViewModel>().Cleanup();
             ServiceLocator.Current.GetInstance<TimeViewModel>().Cleanup();
         }
