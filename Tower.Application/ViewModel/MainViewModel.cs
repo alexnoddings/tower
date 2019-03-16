@@ -86,15 +86,16 @@ namespace Tower.Application.ViewModel
             _dayView = new DayView();
             _nightView = new NightView();
             _musicView = new MusicView();
-            ActiveUserControl = _dayView;
-
             IsDayMode = true;
 
             BackgroundService = backgroundService;
             TimeService = timeService;
-            TimeService.AlarmTriggered += async (_, __) => await _spotifyService.ResumePlaybackAsync(true, 1);
             _brightnessService = brightnessService;
             _spotifyService = spotifyService;
+
+            UpdateActiveUserControl();
+
+            TimeService.AlarmTriggered += async (_, __) => await _spotifyService.ResumePlaybackAsync(true, 1);
             _spotifyService.PlaybackStateModified += (_, __) => UpdateActiveUserControl();
 
             ToggleSettingsCommand = new RelayCommand(() => IsSettingsVisible = !IsSettingsVisible);
@@ -142,20 +143,19 @@ namespace Tower.Application.ViewModel
 
         private void UpdateActiveUserControl()
         {
-            if (_spotifyService.IsPlaying)
+            _brightnessService.SetBrightness(IsDayMode ? 1 : 0);
+
+            if (_spotifyService != null && _spotifyService.IsPlaying)
             {
                 ActiveUserControl = _musicView;
-                _brightnessService.SetBrightness(1);
             }
             else if (IsDayMode)
             {
                 ActiveUserControl = _dayView;
-                _brightnessService.SetBrightness(1);
             }
             else
             {
                 ActiveUserControl = _nightView;
-                _brightnessService.SetBrightness(0.01);
             }
         }
 
