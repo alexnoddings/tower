@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using MaterialDesignThemes.Wpf;
 
 namespace Tower.Application
 {
@@ -10,6 +11,12 @@ namespace Tower.Application
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        // Resets the alarm clock to view hours when re-opened
+        private void AlarmOkButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            AlarmClock.DisplayMode = ClockDisplayMode.Hours;
         }
     }
 }

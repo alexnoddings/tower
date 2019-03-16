@@ -38,6 +38,9 @@
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
     </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
@@ -47,10 +50,19 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="MahApps.Metro.IconPacks.Material, Version=2.3.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.IconPacks.Material.2.3.0\lib\net46\MahApps.Metro.IconPacks.Material.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.0.0.14576, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.1\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.0.1205, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.5.0.1205\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,8 +85,42 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Converters\BooleanToDayNightIconConverter.cs" />
+    <Compile Include="Converters\BooleanToPlayPauseIconConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="DesignTimeServices\DesignTimeBackgroundService.cs" />
+    <Compile Include="DesignTimeServices\DesignTimeBrightnessService.cs" />
+    <Compile Include="DesignTimeServices\DesignTimeSpotifyService.cs" />
+    <Compile Include="DesignTimeServices\DesignTimeTimeService.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MusicViewModel.cs" />
+    <Compile Include="ViewModel\DayViewModel.cs" />
+    <Compile Include="ViewModel\TimeViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\DayView.xaml.cs">
+      <DependentUpon>DayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicView.xaml.cs">
+      <DependentUpon>MusicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Music\MusicControlView.xaml.cs">
+      <DependentUpon>MusicControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Music\MusicCurrentMediaProgressBarView.xaml.cs">
+      <DependentUpon>MusicCurrentMediaProgressBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Music\MusicCurrentMediaView.xaml.cs">
+      <DependentUpon>MusicCurrentMediaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NightView.xaml.cs">
+      <DependentUpon>NightView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Time\DateView.xaml.cs">
+      <DependentUpon>DateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Time\TimeView.xaml.cs">
+      <DependentUpon>TimeView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -87,15 +133,71 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\DayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Music\MusicControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Music\MusicCurrentMediaProgressBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Music\MusicCurrentMediaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NightView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Time\DateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Time\TimeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tower.Core\Tower.Core.csproj">
+      <Project>{25A0C28F-4ABF-4566-8EE8-578DFA2F4E13}</Project>
+      <Name>Tower.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tower.Services.BingBackground\Tower.Services.BingBackground.csproj">
+      <Project>{4D9AF742-65BB-4A55-BA38-BA220EECC823}</Project>
+      <Name>Tower.Services.BingBackground</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tower.Services.Spotify\Tower.Services.Spotify.csproj">
+      <Project>{21E2C2D8-B5D6-4C60-A0F3-876F475DE5DC}</Project>
+      <Name>Tower.Services.Spotify</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tower.Services.Time\Tower.Services.Time.csproj">
+      <Project>{964B1AEE-1BDA-472B-B3B6-F5AC4726B18A}</Project>
+      <Name>Tower.Services.Time</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tower.Services.WmiBrightness\Tower.Services.WmiBrightness.csproj">
+      <Project>{46C4D9D5-07DE-49FC-8286-3F8EE7F37779}</Project>
+      <Name>Tower.Services.WmiBrightness</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

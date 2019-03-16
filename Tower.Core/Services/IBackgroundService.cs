@@ -8,7 +8,7 @@ namespace Tower.Core.Services
 {
     public interface IBackgroundService
     {
-        string SelectedBackgroundUri { get; }
+        string SelectedBackgroundUri { get; set; }
         List<string> AvailableBackgroundUris { get; }
     }
 }

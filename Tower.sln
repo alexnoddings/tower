@@ -3,7 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tower", "Tower\Tower.csproj", "{3B7949D8-553E-4D23-8A58-D4545A4A1C97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tower.Core", "Tower.Core\Tower.Core.csproj", "{25A0C28F-4ABF-4566-8EE8-578DFA2F4E13}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{4A90F899-7F19-4A47-BD9F-8E0EEB4E70C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tower.Services.BingBackground", "Tower.Services.BingBackground\Tower.Services.BingBackground.csproj", "{4D9AF742-65BB-4A55-BA38-BA220EECC823}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tower.Application", "Tower.Application\Tower.Application.csproj", "{3B7949D8-553E-4D23-8A58-D4545A4A1C97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0FA05581-61A2-48B7-9423-C496AAF84C05}"
+	ProjectSection(SolutionItems) = preProject
+		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tower.Services.WmiBrightness", "Tower.Services.WmiBrightness\Tower.Services.WmiBrightness.csproj", "{46C4D9D5-07DE-49FC-8286-3F8EE7F37779}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tower.Services.Spotify", "Tower.Services.Spotify\Tower.Services.Spotify.csproj", "{21E2C2D8-B5D6-4C60-A0F3-876F475DE5DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tower.Services.Time", "Tower.Services.Time\Tower.Services.Time.csproj", "{964B1AEE-1BDA-472B-B3B6-F5AC4726B18A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +28,39 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25A0C28F-4ABF-4566-8EE8-578DFA2F4E13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25A0C28F-4ABF-4566-8EE8-578DFA2F4E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25A0C28F-4ABF-4566-8EE8-578DFA2F4E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25A0C28F-4ABF-4566-8EE8-578DFA2F4E13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D9AF742-65BB-4A55-BA38-BA220EECC823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D9AF742-65BB-4A55-BA38-BA220EECC823}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D9AF742-65BB-4A55-BA38-BA220EECC823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D9AF742-65BB-4A55-BA38-BA220EECC823}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3B7949D8-553E-4D23-8A58-D4545A4A1C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B7949D8-553E-4D23-8A58-D4545A4A1C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B7949D8-553E-4D23-8A58-D4545A4A1C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B7949D8-553E-4D23-8A58-D4545A4A1C97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46C4D9D5-07DE-49FC-8286-3F8EE7F37779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46C4D9D5-07DE-49FC-8286-3F8EE7F37779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46C4D9D5-07DE-49FC-8286-3F8EE7F37779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46C4D9D5-07DE-49FC-8286-3F8EE7F37779}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21E2C2D8-B5D6-4C60-A0F3-876F475DE5DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E2C2D8-B5D6-4C60-A0F3-876F475DE5DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E2C2D8-B5D6-4C60-A0F3-876F475DE5DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E2C2D8-B5D6-4C60-A0F3-876F475DE5DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{964B1AEE-1BDA-472B-B3B6-F5AC4726B18A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{964B1AEE-1BDA-472B-B3B6-F5AC4726B18A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{964B1AEE-1BDA-472B-B3B6-F5AC4726B18A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{964B1AEE-1BDA-472B-B3B6-F5AC4726B18A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4D9AF742-65BB-4A55-BA38-BA220EECC823} = {4A90F899-7F19-4A47-BD9F-8E0EEB4E70C7}
+		{46C4D9D5-07DE-49FC-8286-3F8EE7F37779} = {4A90F899-7F19-4A47-BD9F-8E0EEB4E70C7}
+		{21E2C2D8-B5D6-4C60-A0F3-876F475DE5DC} = {4A90F899-7F19-4A47-BD9F-8E0EEB4E70C7}
+		{964B1AEE-1BDA-472B-B3B6-F5AC4726B18A} = {4A90F899-7F19-4A47-BD9F-8E0EEB4E70C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {34E2206C-8B8A-4956-A8BB-604E1995C33A}

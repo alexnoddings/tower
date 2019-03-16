@@ -9,8 +9,8 @@ namespace Tower.Core.Services
     public interface ITimeService
     {
         string TimeText { get; }
-        DateTime NextAlarm { get; }
-        void SetNextAlarm(TimeSpan timeOfDay);
+        string DateText { get; }
+        DateTime NextAlarm { get; set; }
         event EventHandler AlarmTriggered;
     }
 }
