@@ -198,26 +198,26 @@ namespace Tower.Services.Spotify
                 if (context == null)
                 {
                     backOffMs = Math.Min(backOffMs * 2, MaxBackOff);
-                    Thread.Sleep(backOffMs);
+                    await Task.Delay(backOffMs);
                     continue;
                 }
 
                 if (context?.Item == null)
                 {
                     backOffMs = Math.Min(backOffMs * 2, MaxBackOff);
-                    Thread.Sleep(backOffMs);
+                    await Task.Delay(backOffMs);
                     continue;
                 }
 
                 string contextTrackTitle = context.Item.Name;
                 string contextTrackArtists = string.Join(", ", context.Item.Artists.Select(a => a.Name));
 
-                // Local has received updates, remote hasn't. Need to wait for remote here.
+                // Local has received updates, remote hasn't. Need to wait for *remote here.
                 if (IsPlaying == context.IsPlaying && TrackTitle == contextTrackTitle &&
                     TrackArtist == contextTrackArtists)
                 {
                     backOffMs = Math.Min(backOffMs * 2, MaxBackOff);
-                    Thread.Sleep(backOffMs);
+                    await Task.Delay(backOffMs);
                     continue;
                 }
 
