@@ -90,11 +90,7 @@ namespace Tower.Services.Spotify
         #endregion
 
         #region ISpotifyService Methods
-        private async Task TransferPlaybackToThisDeviceAsync()
-        {
-            string deviceId = (await _api.GetDevicesAsync()).Devices.First(d => d.Name == Environment.MachineName).Id;
-            await _api.TransferPlaybackAsync(deviceId);
-        }
+        private async Task<string> GetCurrentDeviceIdAsync() => (await _api.GetDevicesAsync()).Devices.First(d => d.Name == Environment.MachineName).Id;
 
         public async Task PreviousTrackAsync()
         {
@@ -115,9 +111,7 @@ namespace Tower.Services.Spotify
 
         public async Task ResumePlaybackAsync(bool forceThisDevice = false, int positionMs = 0)
         {
-            if (forceThisDevice)
-                await TransferPlaybackToThisDeviceAsync();
-            await _api.ResumePlaybackAsync("", "", null, "", positionMs);
+            await _api.ResumePlaybackAsync( forceThisDevice ? await GetCurrentDeviceIdAsync() : "", "", null, "", positionMs);
         }
         #endregion
 
