@@ -94,8 +94,14 @@ namespace Tower.Application.ViewModel
             _spotifyService = spotifyService;
 
             UpdateActiveUserControl();
-
-            TimeService.AlarmTriggered += async (_, __) => await _spotifyService.ResumePlaybackAsync(true, 1);
+            
+            TimeService.AlarmTriggered += async (_, __) =>
+            {
+                Task resumePlaybackTask = _spotifyService.ResumePlaybackAsync(true, 1);
+                IsDayMode = true;
+                UpdateActiveUserControl();
+                await resumePlaybackTask;
+            };
             _spotifyService.PlaybackStateModified += (_, __) => UpdateActiveUserControl();
 
             ToggleSettingsCommand = new RelayCommand(() => IsSettingsVisible = !IsSettingsVisible);
